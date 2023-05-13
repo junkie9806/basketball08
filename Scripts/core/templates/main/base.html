@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+
+<head>
+    <title>{% block title %}농구 매칭 및 기록 관리{% endblock %}</title>
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">매칭</a></li>
+                <li><a href="{% url 'home' %}">모집</a></li>
+                <li><a href="{% url 'home' %}">기록관리</a></li>
+                <li><a href="{% url 'home' %}">커뮤니티</a></li>
+                <li><a href="{% url 'home' %}">공지사항</a></li>
+                <li><a href="{% url 'competition_list' %}">대회</a></li>
+                <li><a href="{% url 'home' %}">선수</a></li>
+                <li><a href="{% url 'home' %}">팀</a></li>
+                <nav>
+                    <ul>
+                        
+                        <li>
+                            <form action="{% url 'search' %}" method="GET">
+                                <input type="text" name="query" placeholder="검색어를 입력하세요">
+                                <button type="submit">검색</button>
+                            </form>
+                        </li>
+                    </ul>
+                </nav>
+                
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+</body>
+</html>
