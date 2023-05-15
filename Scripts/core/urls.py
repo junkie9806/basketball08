@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -6,4 +6,5 @@ urlpatterns = [
     path('competition/', views.competition_list, name='competition_list'),
     path('search/', views.search, name='search'),
     path('search/', views.search_view, name='search'),
+    path('players/', include('players.urls', namespace='players')),
 ]

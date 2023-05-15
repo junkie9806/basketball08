@@ -1,0 +1,10 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+  <h2>선수 추가</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">추가</button>
+  </form>
+{% endblock %}

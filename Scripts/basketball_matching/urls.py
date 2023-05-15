@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
     path('competitions/', include('competitions.urls')),
-    # 다른 앱의 URL 매핑 추가
+    
 ]

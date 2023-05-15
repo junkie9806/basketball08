@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+
+{% block title %}선수 메인{% endblock %}
+
+{% block content %}
+    <h1>선수 메인 페이지</h1>
+    
+    <ul>
+        <li><a href="{% url 'players:add_player' %}">선수 추가</a></li>
+        <li><a href="{% url 'players:player_form' %}">선수 정보 수정</a></li>
+        <li><a href="{% url 'players:player_list' %}">선수 목록</a></li>
+    </ul>
+{% endblock %}

@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .models import Competition
+from players.models import Player
+
 
 def home(request):
     return render(request, 'main/base.html')
@@ -31,3 +33,4 @@ def search_view(request):
     }
     
     return render(request, 'search.html', context)
+
