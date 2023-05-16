@@ -79,8 +79,15 @@ WSGI_APPLICATION = 'basketball_matching.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'team8',
+        'USER' : 'admin',
+        'PASSWORD' : 'admin123',
+        'PORT' : '3306',
+        'HOST' : 'team8.cuu8fo08ogj5.ap-northeast-2.rds.amazonaws.com',
+        'OPTION' : {
+            'init_command' : "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
 
