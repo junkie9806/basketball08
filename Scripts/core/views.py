@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Competition
 from players.models import Player
 
@@ -34,3 +34,5 @@ def search_view(request):
     
     return render(request, 'search.html', context)
 
+def login_main(request):
+    return redirect('login:login_main')
