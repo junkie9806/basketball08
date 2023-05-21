@@ -51,7 +51,8 @@
 	<div class="container">
 		<h1>Login</h1>
 		<form action="#" method="post">
-			<label for="username">Username</label>
+			{% csrf_token %}
+			<label for="username">Id</label>
 			<input type="text" id="username" name="username" placeholder="Enter your username" required>
 
 			<label for="password">Password</label>
@@ -59,6 +60,35 @@
 
 			<button type="submit">Login</button>
 		</form>
+		<a href="{% url 'login:login_register' %}">회원가입</a>
 	</div>
+	<script>
+        // 자바스크립트 코드 작성
+        $(document).ready(function() {
+            // 폼 전송 이벤트 리스너
+            $('form').submit(function(event) {
+                event.preventDefault();  // 기본 동작 취소
+
+                // CSRF 토큰 가져오기
+                var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+
+                // POST 요청 보내기
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: {
+                        'csrfmiddlewaretoken': csrfToken,
+                        // 다른 폼 데이터들...
+                    },
+                    success: function(response) {
+                        // 성공 시 동작
+                    },
+                    error: function(xhr, errmsg, err) {
+                        // 오류 시 동작
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
