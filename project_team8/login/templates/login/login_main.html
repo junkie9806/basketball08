@@ -61,6 +61,22 @@
 			<button type="submit">Login</button>
 		</form>
 		<a href="{% url 'main:login:login_register' %}">회원가입</a>
+		
+		{% if check %}
+		    <div>
+				<form action="/login/kakaoLogout" method="GET">
+					<input type="submit" value="카카오로그아웃 및 연결 끊기" />
+				</form>
+		    </div>
+	  	{% else %}
+	  
+		  	<div>
+			  	<form action="/login/kakaoLoginLogic" method="GET">
+			  	<input type="submit" value="카카오로그인" />
+			  	</form>
+		  	</div>
+	  	{% endif %}
+		  
 	</div>
 	<script>
         // 자바스크립트 코드 작성
@@ -89,6 +105,27 @@
                 });
             });
         });
+		var ws = new WebSocket('ws://127.0.0.1:8000');
+	ws.onopen = (event) => {
+  		let sendData = { event: 'open' }
+  		ws.send(JSON.stringify(sendData));
+	}
+	ws.onmessage = (event) => {
+  		let recData = JSON.parse(event.data);
+  		switch (recData.event) {
+    		case 'response':
+      			console.log(recData.data);
+      			break;
+  		}
+	}
+  
+	function myOnClick() {
+  		let sendData = {
+    		event: 'request',
+    		data: 'some data...'
+  	};
+  	ws.send(JSON.stringify(sendData));
+	}
     </script>
 </body>
 </html>
