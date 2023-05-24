@@ -15,14 +15,14 @@
         <input type="text" name="position" placeholder="포지션" required>
         <button type="submit">저장</button>
     </form>
-    {% if added_player %}
+    {% for player in players %}
     <h2>추가된 선수 정보</h2>
-    <p>이름: {{ added_player.name }}</p>
-    <p>키: {{ added_player.height }}</p>
-    <p>몸무게: {{ added_player.weight }}</p>
-    <p>포지션: {{ added_player.position }}</p>    
+    <p>이름: {{ player.name }}</p>
+    <p>키: {{ player.height }}</p>
+    <p>몸무게: {{ player.weight }}</p>
+    <p>포지션: {{ player.position }}</p>    
     <a href="{% url 'main:players:player_main' %}">선수 메인 페이지로 돌아가기</a>
-    {% endif %}
+    {% endfor %}
     <a href="{% url 'main:players:player_main' %}">선수 메인 페이지로 돌아가기</a>
 </body>
 </body>
