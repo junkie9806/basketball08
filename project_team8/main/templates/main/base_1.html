@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>농구 매칭 및 기록 관리</title>
+    <style>
+        /* CSS styles for the navigation menu */
+        header {
+            background-color: #f2f2f2;
+            padding: 10px;
+            position: relative;
+        }
+
+        nav {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-grow: 1;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+            color: #000;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #000;
+            font-size: 1.7em;
+        }
+
+        nav ul li a:hover {
+            background-color: #ddd;
+        }
+
+        /* CSS styles for the search form */
+        form.search-form {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        form.search-form input[type="text"] {
+            padding: 5px;
+            width: 200px;
+            border: 1px solid #ccc;
+        }
+
+        form.search-form button[type="submit"] {
+            padding: 5px 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            width: 80px;
+        }
+
+        form.search-form button[type="submit"]:hover {
+            background-color: #555;
+        }
+
+        /* Additional CSS styles for main content and other elements */
+        main {
+            margin: 20px;
+            position: relative;
+            text-align: center;
+        }
+
+        .centered-text {
+            font-size: 3em;
+            color: #000;
+        }
+
+        .background-image {
+            position: relative;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .background-image img {
+            display: block;
+            width: 100%;
+            max-height: 300px;
+            opacity: 0.7;
+            margin: 0 auto;
+        }
+
+        .centered-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .centered-content ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+            background-color: #f2f2f2;
+            flex-grow: 1;
+        }
+
+        .centered-content ul li {
+            margin: 0;
+            font-size: 2.2em;
+            color: #000;
+        }
+
+        .centered-content ul li a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .centered-content ul li a:hover {
+            background-color: #ddd;
+        }
+
+        .login-btn {
+            padding: 5px 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .login-btn:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'main:home' %}">매칭</a></li>
+                <li><a href="{% url 'main:players:player_main' %}">선수정보등록</a></li>
+                <li><a href="{% url 'main:home' %}">기록관리</a></li>
+                <li><a href="{% url 'main:home' %}">커뮤니티</a></li>
+                <li><a href="{% url 'main:home' %}">공지사항</a></li>
+                <li><a href="{% url 'main:home' %}">대회</a></li>
+                <li><a href="{% url 'main:home' %}">선수</a></li>
+                <li><a href="{% url 'main:home' %}">팀</a></li>
+                <nav>
+                    <ul>
+                        
+                        <li>
+                            <form action="{% url 'main:search:search_main' %}" method="GET">
+                                <input type="text" name="query" placeholder="검색어를 입력하세요">
+                                <button type="submit">검색</button>
+                            </form>
+                        </li>
+                    </ul>
+                </nav>
+            </ul>
+            
+            <form action="{% url 'main:login:login_main' %}" method="POST">
+                <button class="login-btn">로그인</button>
+            </form>
+        </nav>
+        
+            <div class="centered-content">
+                <div class="centered-text">아마추어 농구 플랫폼</div>
+            </div>
+        </div>
+    </header>
+    {% load static %}
+    <img src="{% static 'im1.png' %}" alt="Example Image" width="1700", height="400">
+
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+   
+    
+    
+    
+</body>
+
+</html>

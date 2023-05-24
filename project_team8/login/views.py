@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-import requests
 from .models import User
 import json
 from django.template import loader
@@ -18,14 +17,14 @@ def login_registering(request):
         form = User(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
+            user_id = form.cleaned_data.get('user_id')
             password = form.cleaned_data.get('password')
             name = form.cleaned_data.get('name')
             phone_number=form.cleaned_data.get('phone_number')
             email=form.cleaned_data.get('email')
             address=form.cleaned_data.get('address')
 
-            user = User.objects.create(username=username, phone_number=phone_number, email=email, address=address)
+            user = User.objects.create(user_id, phone_number, email, address)
             user.set_password(password)
             user.name = name
             user.save()
@@ -53,7 +52,7 @@ def kakaoLoginLogicRedirect(request):
     _restApiKey = '564eabed437df94a09f01adbce9cdbee' # 입력필요
     _redirect_uri = 'http://127.0.0.1:8000/kakaoLoginLogicRedirect'
     _url = f'https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id={"564eabed437df94a09f01adbce9cdbee"}&redirect_uri={"http://127.0.0.1:8000/kakaoLoginLogicRedirect/"}&code={_qs}'
-    _res = requests.post(_url)
+    _res = request.post(_url)
     _result = _res.json()
     request.session['access_token'] = _result['access_token']
     request.session.modified = True
@@ -69,7 +68,7 @@ def kakaoLogout(request):
     # _header = {
     #   'Authorization': f'bearer {_token}',
     # }
-    _res = requests.post(_url, headers=_header)
+    _res = request.post(_url, headers=_header)
     _result = _res.json()
     if _result.get('id'):
         del request.session['access_token']
