@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+
+<head>
+    <title>{% block title %}농구 매칭 및 기록 관리{% endblock %}</title>
+    <style>
+        /* CSS styles for the navigation menu */
+        header {
+            background-color: #f2f2f2;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        nav ul li {
+            display: inline-block;
+        }
+        
+        nav ul li a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+        
+        nav ul li a:hover {
+            background-color: #ddd;
+        }
+        
+        /* CSS styles for the search form */
+        form {
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        input[type="text"] {
+            padding: 5px;
+            width: 200px;
+            border: 1px solid #ccc;
+        }
+        
+        button[type="submit"] {
+            padding: 5px 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #555;
+        }
+        
+        /* Additional CSS styles for main content and other elements */
+        main {
+            margin: 20px;
+        }
+        
+        /* Add your custom CSS styles here to enhance the overall appearance */
+        .login-btn {
+            padding: 5px 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .login-btn:hover {
+            background-color: #555;
+        }
+        
+        .right {
+            margin-right: auto;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'main:home' %}">매칭</a></li>
+                <li><a href="{% url 'main:players:player_main' %}">선수정보등록</a></li>
+                <li><a href="{% url 'main:home' %}">기록관리</a></li>
+                <li><a href="{% url 'main:board:board_main' %}">커뮤니티</a></li>
+                <li><a href="{% url 'main:home' %}">공지사항</a></li>
+                <li><a href="{% url 'main:home' %}">대회</a></li>
+                <li><a href="{% url 'main:home' %}">팀</a></li>
+                <nav>
+                    <ul>
+                        
+                        <li>
+                            <form action="{% url 'main:search:search_main' %}" method="GET">
+                                <input type="text" name="query" placeholder="검색어를 입력하세요">
+                                <button type="submit">검색</button>
+                            </form>
+                        </li>
+                    </ul>
+                </nav>
+                
+            </ul>
+            <div class="right">
+                <form action="{% url 'main:accounts:login' %}" method="POST">
+                    {% csrf_token %}
+                    <button class="login-btn">로그인</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    {% load static %}
+    <img src="{% static 'im1.png' %}" alt="Example Image" width="1700", height="400">
+
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+</body>
+</html>
