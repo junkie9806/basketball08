@@ -10,12 +10,14 @@ def register(request):
 
     elif request.method == 'POST':
         username = request.POST.get('username', None)
-        useremail = request.POST.get('useremail', None) 
+        useremail = request.POST.get('useremail', None)
+        phone = request.POST.get('phone', None)
+        address = request.POST.get('address', None)
         password = request.POST.get('password', None)
         re_password = request.POST.get('re_password', None)
         
         err_data={}
-        if not(username and useremail and password and re_password):
+        if not(username and useremail and phone and address and password and re_password):
             err_data['error'] = '모든 값을 입력해주세요.'
         
         elif password != re_password:
@@ -25,6 +27,8 @@ def register(request):
             user = User(
                 username=username,
                 useremail=useremail,
+                phone = phone,
+                address = address,
                 password=make_password(password),
             )
             user.save()

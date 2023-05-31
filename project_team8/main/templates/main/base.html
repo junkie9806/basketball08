@@ -119,6 +119,12 @@
                     <button class="login-btn">회원가입</button>
                 </form>
             </div>
+            <div class="right">
+                <form action="{% url 'main:accounts1:logout' %}" method="POST">
+                    {% csrf_token %}
+                    <button class="login-btn">로그아웃</button>
+                </form>
+            </div>
         </nav>
     </header>
     {% load static %}
