@@ -32,6 +32,7 @@ def register(request):
                 password=make_password(password),
             )
             user.save()
+            return redirect('main:accounts1:login')
 
         return render(request, 'accounts1/register.html', err_data)
 
