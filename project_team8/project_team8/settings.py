@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social_django',
     'main',
-    'login',
+    'accounts1',
     'search',
     'players',
     'board',

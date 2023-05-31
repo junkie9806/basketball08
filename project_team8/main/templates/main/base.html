@@ -108,9 +108,15 @@
                 
             </ul>
             <div class="right">
-                <form action="{% url 'main:login:login_main' %}" method="POST">
+                <form action="{% url 'main:accounts1:login' %}" method="POST">
                     {% csrf_token %}
                     <button class="login-btn">로그인</button>
+                </form>
+            </div>
+            <div class="right">
+                <form action="{% url 'main:accounts1:register' %}" method="POST">
+                    {% csrf_token %}
+                    <button class="login-btn">회원가입</button>
                 </form>
             </div>
         </nav>
