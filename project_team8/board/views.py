@@ -12,5 +12,5 @@ def write(request):
         content = request.POST['content']
         post = Post(title=title, content=content)
         post.save()
-        return redirect('board_main')
+        return redirect('main:board:board_main')
     return render(request, 'board/write.html', {'posts':posts})
