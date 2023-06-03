@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+</head>
+<body>
+  <header>
+    <!-- 헤더 내용 추가 -->
+    <h1>팀 생성</h1>
+  </header>
+
+
+  <main>
+    <!-- 팀 생성 폼 추가 -->
+    <h2>팀 생성</h2>
+    <form method="post" action="{% url 'main:team:team_create' %}">
+      {% csrf_token %}
+      <label for="name">팀 이름:</label>
+      <input type="text" id="name" name="name" required><br>
+
+      <label for="location">팀 지역:</label>
+      <input type="text" id="location" name="location" required><br>
+
+      <label for="team_leader">팀장이름:</label>
+      <input type="text" id="team_leader" name="team_leader" required><br>
+
+      <label for="leader_permission">만든 사람의 권한:</label>
+      <select id="leader_permission" name="leader_permission" required>
+        <option value="최고">최고</option>
+        <option value="일반">일반</option>
+        <option value="제한">제한</option>
+      </select><br>
+
+      
+      <input type="submit" value="팀 생성">
+    </form>
+  </main>
+
+  
+</body>
+</html>

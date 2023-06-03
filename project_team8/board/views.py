@@ -8,8 +8,8 @@ def board_main(request):
 def write(request):
     posts = Post.objects.all()
     if request.method == 'POST':
-        title = request.POST['title']
-        content = request.POST['content']
+        title = request.POST.get('title')
+        content = request.POST.get('content')
         post = Post(title=title, content=content)
         post.save()
         return redirect('main:board:board_main')

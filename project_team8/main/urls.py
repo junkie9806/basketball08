@@ -9,4 +9,5 @@ urlpatterns = [
     path('accounts_main/',include('accounts_main.urls', namespace='accounts_main')),
     path('players/',include('players.urls',namespace='players')),
     path('board/',include('board.urls',namespace='board')),
+    path('team/',include('team.urls',namespace='team')),
 ]

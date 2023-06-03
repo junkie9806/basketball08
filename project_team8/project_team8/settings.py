@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'search',
     'players',
     'board',
+    'team',
 ]
 
 MIDDLEWARE = [
