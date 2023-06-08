@@ -1,13 +1,10 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-class User(models.Model):  # 1
-    username = models.CharField(max_length=255)
-    useremail = models.EmailField(max_length=255)
-    password = models.CharField(max_length=255)
-    phone = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+class CustomUser(AbstractUser):
+    # 추가 필드 정의
+    phone_number = models.CharField(max_length=20)
+    address = models.CharField(max_length=100)
 
-    def __str__(self): # 2
-        return self.username
+    class Meta:
+        db_table = 'login_user'

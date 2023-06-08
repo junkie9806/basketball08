@@ -1,25 +1,13 @@
 from django import forms
-from .models import User
-from django.contrib.auth.hashers import check_password
+from django.contrib.auth.forms import UserCreationForm
+from .models import CustomUser
 
-class LoginForm(forms.Form):
-    useremail = forms.EmailField(
-        error_messages={
-            'required': '아이디를 입력해주세요.'
-        }, max_length=64, label="사용자 이메일")
-    password = forms.CharField(
-        error_messages={
-            'required': '비밀번호를 입력해주세요.'
-        },widget=forms.PasswordInput, label = "비밀번호")
+class CustomUserCreationForm(UserCreationForm):
+    # 추가 필드를 위한 폼 필드 정의
+    email = forms.EmailField(required=True)
+    phone_number = forms.CharField(max_length=20)
+    address = forms.CharField(max_length=100)
 
-    def clean(self):
-        cleaned_data = super().clean()
-        useremail = cleaned_data.get('useremail')
-        password = cleaned_data.get('password')
-
-        if useremail and password:
-            user = User.objects.get(useremail=useremail)
-            if not check_password(password, user.password):
-                self.add_error('password', '비밀번호가 틀립니다.')
-            else:
-                self.user_id = user.id
+    class Meta:
+        model = CustomUser
+        fields = ('id', 'username', 'password1', 'password2', 'first_name', 'email', 'phone_number', 'address')

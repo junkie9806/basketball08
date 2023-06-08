@@ -113,22 +113,19 @@
                 
             </ul>
             <div class="left">
-                <form action="{% url 'main:accounts_main:login' %}" method="POST">
-                    {% csrf_token %}
-                    <button class="login-btn">로그인</button>
-                </form>
-           
-            
-                <form action="{% url 'main:accounts_main:register' %}" method="POST">
-                    {% csrf_token %}
-                    <button class="login-btn">회원가입</button>
-                </form>
-           
-                <form action="{% url 'main:accounts_main:logout' %}" method="POST">
-                    {% csrf_token %}
-                    <button class="login-btn">로그아웃</button>
-                </form>
+                {% if user.is_authenticated %}
+                    <form action="{% url 'main:accounts_main:user_logout' %}" method="POST">
+                        {% csrf_token %}
+                        <button class="login-btn" type="submit">로그아웃</button>
+                    </form>
+                {% else %}    
+                    <form action="{% url 'main:accounts_main:user_login' %}" method="POST">
+                        {% csrf_token %}
+                        <button class="login-btn" type="submit">로그인</button>
+                    </form>
+                {% endif %}
             </div>
+            
         </nav>
     </header>
     {% load static %}
