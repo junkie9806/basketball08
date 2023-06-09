@@ -10,4 +10,5 @@ urlpatterns = [
     path('players/',include('players.urls',namespace='players')),
     path('board/',include('board.urls',namespace='board')),
     path('team/',include('team.urls',namespace='team')),
+    path('match/', include('match.urls', namespace='match'))
 ]

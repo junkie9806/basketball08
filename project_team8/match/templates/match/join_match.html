@@ -1,0 +1,26 @@
+<!-- join_match.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Join a Match</title>
+</head>
+<body>
+    <h1>Join a Match</h1>
+    {% if match %}
+        <p>
+            Match Date: {{ match.match_date }}<br>
+            Team Name: {{ match.team_name }}<br>
+            Location: {{ match.location }}
+        </p>
+        <form method="post" action="{% url 'match:join_match' match.id %}">
+            {% csrf_token %}
+            <label for="player_name">Player Name:</label>
+            <input type="text" id="player_name" name="player_name" required>
+            <br>
+            <button type="submit">Join</button>
+        </form>
+    {% else %}
+        <p>No match found.</p>
+    {% endif %}
+</body>
+</html>

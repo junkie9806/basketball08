@@ -1,0 +1,23 @@
+<!-- create_match.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create a Match</title>
+</head>
+<body>
+    <h1>Create a Match</h1>
+    <form method="post" action="{% url 'match:create_match' %}">
+        {% csrf_token %}
+        <label for="match_date">Match Date:</label>
+        <input type="datetime-local" id="match_date" name="match_date" required>
+        <br>
+        <label for="team_name">Team Name:</label>
+        <input type="text" id="team_name" name="team_name" required>
+        <br>
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+        <br>
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>

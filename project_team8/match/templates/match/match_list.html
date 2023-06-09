@@ -1,0 +1,61 @@
+<!-- match_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Match List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Match List</h1>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Team Name</th>
+            <th>Location</th>
+        </tr>
+        {% for match in matches %}
+        <tr>
+            <td>{{ match.match_date }}</td>
+            <td>{{ match.team_name }}</td>
+            <td>{{ match.location }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Create a Match</h2>
+    <form method="post" action="{% url 'main:match:create_match' %}">
+        {% csrf_token %}
+        <label for="match_date">Match Date:</label>
+        <input type="datetime-local" id="match_date" name="match_date" required>
+        <br>
+        <label for="team_name">Team Name:</label>
+        <input type="text" id="team_name" name="team_name" required>
+        <br>
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+        <br>
+        <button type="submit">Create</button>
+    </form>
+
+    <h2>Join a Match</h2>
+    {% for match in matches %}
+        <p>
+            Match Date: {{ match.match_date }} |
+            Team Name: {{ match.team_name }} |
+            Location: {{ match.location }} |
+            <a href="{% url 'main:match:join_match' match.id %}">Join</a>
+        </p>
+    {% endfor %}
+</body>
+</html>
