@@ -25,11 +25,13 @@
             <th>Location</th>
         </tr>
         {% for match in matches %}
-        <tr>
-            <td>{{ match.match_date }}</td>
-            <td>{{ match.team_name }}</td>
-            <td>{{ match.location }}</td>
-        </tr>
+            {% if match.is_joined %}
+                <tr>
+                    <td>{{ match.match_date }}</td>
+                    <td>{{ match.team_name }}</td>
+                    <td>{{ match.location }}</td>
+                </tr>
+            {% endif %}
         {% endfor %}
     </table>
 

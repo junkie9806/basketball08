@@ -18,8 +18,12 @@ def create_match(request):
     return render(request, 'match/create_match.html', {'form': form})
 
 def join_match(request, match_id):
-    match = Match.objects.get(pk=match_id)
-    # 참가 처리 등을 수행
-    # ...
-
-    return redirect('main:match:match_list')
+    match = Match.objects.get(id = match_id)
+    if request.method == 'POST':
+        team_name = request.POST.get('team_name')
+        match.team_name = team_name
+        match.is_joined = True  # 매치에 참가한 경우 is_joined를 True로 설정
+        match.save()  # 변경된 정보를 저장
+        return redirect('main:match:match_list')
+    else:
+        return render(request, 'match/join_match.html', {'match' : match})
