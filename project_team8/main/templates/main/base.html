@@ -118,6 +118,7 @@
                 {% if user.is_authenticated %}
                     <form action="{% url 'main:accounts_main:user_logout' %}" method="POST">
                         {% csrf_token %}
+                        <p>{{ user.first_name }} 님 안녕하세요!</p>
                         <button class="login-btn" type="submit">로그아웃</button>
                     </form>
                 {% else %}    
