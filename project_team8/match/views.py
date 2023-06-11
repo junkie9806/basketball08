@@ -20,8 +20,8 @@ def create_match(request):
 def join_match(request, match_id):
     match = Match.objects.get(id = match_id)
     if request.method == 'POST':
-        team_name = request.POST.get('team_name')
-        match.team_name = team_name
+        team_name_2 = request.POST.get('team_name_2')
+        match.team_name_2 = team_name_2
         match.is_joined = True  # 매치에 참가한 경우 is_joined를 True로 설정
         match.save()  # 변경된 정보를 저장
         return redirect('main:match:match_list')
