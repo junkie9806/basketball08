@@ -7,7 +7,8 @@ class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
     phone_number = forms.CharField(max_length=20)
     address = forms.CharField(max_length=100)
+    leader = forms.BooleanField(required=True)
 
     class Meta:
         model = CustomUser
-        fields = ('id', 'username', 'password1', 'password2', 'first_name', 'email', 'phone_number', 'address')
+        fields = ('id', 'username', 'password1', 'password2', 'first_name', 'email', 'phone_number', 'address', 'leader')

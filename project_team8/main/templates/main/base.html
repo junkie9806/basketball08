@@ -92,15 +92,19 @@
         <nav>
             <ul>
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'main:match:match_list' %}">매칭</a></li>
+                    {% if user.leader %}
+                        <li><a href="{% url 'main:match:match_list' %}">매칭</a></li>
+                        <li><a href="{% url 'main:players:player_main' %}">선수 정보등록</a></li>
+                        <li><a href="{% url 'main:team:team_main' %}">팀조회및등록</a></li>
+                        <li><a href="{% url 'main:home' %}">기록관리</a></li>
+                    {% else %}
+                        <li><a href="{% url 'main:match:match_list' %}">매칭</a></li>
+                        <li><a href="{% url 'main:players:player_main' %}">선수 개인 정보 등록</a></li> 
+                    {% endif %}
                 {% endif %}
-                <li><a href="{% url 'main:players:player_main' %}">선수정보등록</a></li>
-                <li><a href="{% url 'main:team:team_main' %}">팀조회및등록</a></li>
-                <li><a href="{% url 'main:home' %}">기록관리</a></li>
                 <li><a href="{% url 'main:board:board_main' %}">커뮤니티</a></li>
                 <li><a href="{% url 'main:home' %}">공지사항</a></li>
                 <li><a href="{% url 'main:home' %}">대회</a></li>
-                <li><a href="{% url 'main:home' %}">팀</a></li>
                 <nav>
                     <ul>
                         
@@ -118,7 +122,11 @@
                 {% if user.is_authenticated %}
                     <form action="{% url 'main:accounts_main:user_logout' %}" method="POST">
                         {% csrf_token %}
-                        <p>{{ user.first_name }} 님 안녕하세요!</p>
+                        {% if user.leader %}
+                            <p>{{ user.first_name }}(팀장)님 안녕하세요!</p>
+                        {% else %}
+                            <p>{{ user.first_name }}(개인)님 안녕하세요!</p>
+                        {% endif %}
                         <button class="login-btn" type="submit">로그아웃</button>
                     </form>
                 {% else %}    

@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect
 from .forms import CreateMatchForm
+from accounts_main.forms import CustomUser
 from .models import Match
 
 def match_list(request):
     matches = Match.objects.all()
     context = {'matches': matches}
-    return render(request, 'match/match_list.html', context)
+    if CustomUser.leader == True:
+        return render(request, 'match/match_main.html', context)
+    else:
+        return render(request, 'match/match_list.html', context)
 
 def create_match(request):
     if request.method == 'POST':
