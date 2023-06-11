@@ -93,13 +93,14 @@
             <ul>
                 {% if user.is_authenticated %}
                     {% if user.leader %}
-                        <li><a href="{% url 'main:match:match_list' %}">매칭</a></li>
-                        <li><a href="{% url 'main:players:player_main' %}">선수 정보등록</a></li>
-                        <li><a href="{% url 'main:team:team_main' %}">팀조회및등록</a></li>
-                        <li><a href="{% url 'main:home' %}">기록관리</a></li>
+                        <li><a href="{% url 'main:match:match_main' %}">매칭</a></li>
+                        <li><a href="{% url 'main:team:team_main' %}">팀 생성</a></li>
+                        <li><a href="{% url 'main:players:player_main' %}">팀원 등록</a></li>
+                        <li><a href="{% url 'main:home' %}">기록 관리</a></li>
                     {% else %}
-                        <li><a href="{% url 'main:match:match_list' %}">매칭</a></li>
-                        <li><a href="{% url 'main:players:player_main' %}">선수 개인 정보 등록</a></li> 
+                        <li><a href="{% url 'main:match:match_list' %}">매칭 조회</a></li>
+                        <li><a href="{% url 'main:players:player_main' %}">개인 정보 등록</a></li>
+                        <li><a href="{% url 'main:home' %}">팀 조회</a></li>
                     {% endif %}
                 {% endif %}
                 <li><a href="{% url 'main:board:board_main' %}">커뮤니티</a></li>
@@ -107,7 +108,6 @@
                 <li><a href="{% url 'main:home' %}">대회</a></li>
                 <nav>
                     <ul>
-                        
                         <li>
                             <form action="{% url 'main:search:search_main' %}" method="GET">
                                 <input type="text" name="query" placeholder="검색어를 입력하세요">
@@ -142,7 +142,6 @@
     {% load static %}
     <img src="{% static 'im1.png' %}" alt="Example Image" width="1700", height="400">
 
-    
     <main>
         {% block content %}{% endblock %}
     </main>
