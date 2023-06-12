@@ -94,12 +94,12 @@
                 {% if user.is_authenticated %}
                     {% if user.leader %}
                         <li><a href="{% url 'main:match:match_main' %}">매칭</a></li>
-                        <li><a href="{% url 'main:team:team_main' %}">팀 생성</a></li>
+                        <li><a href="{% url 'main:team:team_register' %}">팀 생성</a></li>
                         <li><a href="{% url 'main:players:player_main' %}">팀원 등록</a></li>
                         <li><a href="{% url 'main:home' %}">기록 관리</a></li>
                     {% else %}
                         <li><a href="{% url 'main:match:match_list' %}">매칭 조회</a></li>
-                        <li><a href="{% url 'main:players:player_main' %}">개인 정보 등록</a></li>
+                        <li><a href="{% url 'main:players:add_player' %}">개인 정보 등록</a></li>
                         <li><a href="{% url 'main:home' %}">팀 조회</a></li>
                     {% endif %}
                 {% endif %}

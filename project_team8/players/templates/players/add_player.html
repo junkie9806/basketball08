@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>선수추가</title>
+    <title>개인 정보 등록</title>
 </head>
 <body>
     <h1>선수추가</h1>
@@ -15,15 +15,7 @@
         <input type="text" name="position" placeholder="포지션" required>
         <button type="submit">저장</button>
     </form>
-    {% for player in players %}
-    <h2>추가된 선수 정보</h2>
-    <p>이름: {{ player.name }}</p>
-    <p>키: {{ player.height }}</p>
-    <p>몸무게: {{ player.weight }}</p>
-    <p>포지션: {{ player.position }}</p>    
-    <a href="{% url 'main:players:player_main' %}">선수 메인 페이지로 돌아가기</a>
-    {% endfor %}
-    <a href="{% url 'main:players:player_main' %}">선수 메인 페이지로 돌아가기</a>
+    <a href="{% url 'main:home' %}">메인 페이지로 돌아가기</a>
 </body>
 </body>
 </html>
