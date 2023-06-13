@@ -1,10 +1,43 @@
-
 {% block content %}
-    <h1>선수 메인 페이지</h1>
+    <style>
+        /* CSS styles */
+        .center {
+            text-align: center;
+        }
+        
+        .center ul {
+            display: inline-block;
+            text-align: left;
+            padding: 0;
+        }
+        
+        .center li {
+            list-style-type: none;
+            margin-bottom: 10px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: black;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: black;
+        }
+    </style>
     
-    <ul>
-        <li><a href="{% url 'main:players:add_player' %}">선수 추가</a></li>
-        <li><a href="{% url 'main:players:player_form' %}">선수 정보 수정</a></li>
-        <li><a href="{% url 'main:players:player_list' %}">선수 목록</a></li>
-    </ul>
+    <h1 class="center">선수 메인 페이지</h1>
+    
+    <div class="center">
+        <ul>
+            <li><a href="{% url 'main:players:add_player' %}" class="button">선수 추가</a></li>
+            <li><a href="{% url 'main:players:player_form' %}" class="button">선수 정보 수정</a></li>
+            <li><a href="{% url 'main:players:player_list' %}" class="button">선수 목록</a></li>
+        </ul>
+    </div>
 {% endblock %}

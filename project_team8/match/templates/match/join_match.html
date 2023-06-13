@@ -3,13 +3,68 @@
 <html>
 <head>
     <title>Join a Match</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button[type="submit"] {
+            padding: 8px 16px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        a {
+            color: #4caf50;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
     <h1>Join a Match</h1>
     {% if match %}
         <p>
             Match Date: {{ match.match_date }}<br>
-            Team Name: {{ match.team_name }}<br>
+            Team Name: {{ match.team_name_1 }}<br>
             Location: {{ match.location }}
         </p>
         <form method="post" action="{% url 'main:match:join_match' match.id %}">

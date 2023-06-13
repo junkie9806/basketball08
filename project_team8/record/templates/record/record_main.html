@@ -2,19 +2,54 @@
 <html>
 <head>
     <title>기록 관리</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #4caf50;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            background-color: #fff;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        h3 {
+            margin: 0;
+        }
+        p {
+            margin: 5px 0;
+        }
+    </style>
 </head>
 <body>
     <h1>기록 관리</h1>
-    <a href="{% url 'main:record:record_write' %}">기록등록</a>
+    <a href="{% url 'main:record:record_write' %}">기록 등록</a>
     <ul>
         {% for record in records %}
         <li>
-            <h3>{{ record.record_name}}</h3>
-            <p>{{ record.score }}</p>
-            <p>{{ record.assist }}</p>
-            <p>{{ record.rebound }}</p>
-            <p>{{ record.steal }}</p>
-            <p>{{ record.block }}</p>
+            <h3>{{ record.record_name }}</h3>
+            <p>득점: {{ record.score }}</p>
+            <p>어시스트: {{ record.assist }}</p>
+            <p>리바운드: {{ record.rebound }}</p>
+            <p>스틸: {{ record.steal }}</p>
+            <p>블럭: {{ record.block }}</p>
         </li>
         {% endfor %}
     </ul>
