@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>기록 등록</title>
+</head>
+<body>
+    <h1>기록 등록</h1>
+    <form action="{% url 'main:record:record_write' %}" method="POST">
+        {% csrf_token %}
+        <label for="record_name">이름:</label><br>
+        <input type="text" name="record_name" required><br>
+        <label for="score">득점:</label><br>
+        <input type="number" name="score" required><br>
+        <label for="assist">어시스트:</label><br>
+        <input type="number" name="assist" required><br>
+        <label for="rebound">리바운드:</label><br>
+        <input type="number" name="rebound" required><br>
+        <label for="steal">스틸:</label><br>
+        <input type="number" name="steal" required><br>
+        <label for="block">블럭:</label><br>
+        <input type="number" name="block" required><br>
+        <input type="submit" value="등록">
+    </form>
+    <a href="{% url 'main:record:record_main' %}">기록관리 메인 페이지로 돌아가기</a>
+</body>
+</html>

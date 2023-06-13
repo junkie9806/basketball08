@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'board',
     'team',
     'match',
+    'record',
 ]
 
 MIDDLEWARE = [

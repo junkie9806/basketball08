@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Player
+from accounts_main.models import CustomUser
 
 def player_main(request):
     players = Player.objects.all()
@@ -11,7 +12,7 @@ def add_player(request):
         height = request.POST['height']
         weight = request.POST['weight']
         position = request.POST['position']
-        player = Player(name=name, height=height, weight=weight, position=position)
+        player = Player(name = name, height=height, weight=weight, position=position)
         player.save()
         return redirect('main:players:add_player')
     return render(request, 'players/add_player.html')
