@@ -6,11 +6,11 @@ def board_main(request):
     return render(request, 'board/board_main.html', {'posts': posts})
 
 def write(request):
-    posts = Post.objects.all()
     if request.method == 'POST':
         title = request.POST.get('title')
         content = request.POST.get('content')
-        post = Post(title=title, content=content)
-        post.save()
+        creator = request.user
+        post = Post.objects.create(title=title, content=content, creator=creator)
+        
         return redirect('main:board:board_main')
-    return render(request, 'board/write.html', {'posts':posts})
+    return render(request, 'board/write.html')
