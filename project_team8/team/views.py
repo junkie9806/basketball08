@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from team.models import Team, TeamMember
 from players.models import Player
+from accounts_main.models import CustomUser
 
 def team_main(request):
     team = Team.objects.all()
@@ -14,22 +15,24 @@ def create_team(request):
         
         team = Team.objects.create(name=team_name, leader=leader, address=address)
         
-        # 팀 ID를 세션에 저장
-        request.session['team_id'] = team.id
+        leader.profile.has_team = True
+        leader.profile.save()
         
-        return render(request, 'team/create_team.html', {'team': team})
+        return redirect('main:team:manage_team_members', team_id=team.id)
     
     return render(request, 'team/create_team.html')
 
-def manage_team_members(request):
+def manage_team_members(request, team_id):
     if request.method == 'POST':
         leader = request.user
-        playername = request.POST.get('player')
+        playername = request.POST.get('playername')
+        player = Player.objects.get(playername=playername)
+        team = Team.objects.get(id=team_id)
 
-        try:
-            player = Player.objects.get(playername=playername)
-            TeamMember.objects.create(leader=leader, player=player)
-            return redirect('main:team:team_main')  # Redirect to the appropriate URL
-        except Player.DoesNotExist:
-            error_message = f"Player '{playername}' does not exist."
-            return render(request, 'team/manage_team_members.html', {'error_message': error_message})
+
+        TeamMember.objects.create(team=team, leader=leader, player=player)
+        return redirect('main:team:team_main')
+
+    players = Player.objects.all()
+    team = Team.objects.get(id=team_id)
+    return render(request, 'team/manage_team_members.html', {'players': players, 'team': team})

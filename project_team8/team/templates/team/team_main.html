@@ -5,7 +5,7 @@
         <ul>
             <li><a href="{% url 'main:team:create_team' %}" class="button">팀 생성</a></li>
             {% if team %}
-                <li><a href="{% url 'main:team:manage_team_members' %}" class="button">팀원 관리</a></li>
+                <li><a href="{% url 'main:team:manage_team_members' team_id=team.id%}" class="button">팀원 관리</a></li>
             {% endif %}
         </ul>
     </div>

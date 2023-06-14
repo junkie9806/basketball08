@@ -7,6 +7,7 @@ class CustomUser(AbstractUser):
     phone_number = models.CharField(max_length=20)
     address = models.CharField(max_length=100)
     leader = models.BooleanField(default=None)
+    has_team = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'login_user'

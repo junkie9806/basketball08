@@ -16,9 +16,9 @@ class Team(models.Model):
 class TeamMember(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='members')
     leader = models.ForeignKey(CustomUser, on_delete=models.CASCADE,default=None)
-    player = models.ForeignKey(Player, on_delete=models.CASCADE)
+    playername = models.ForeignKey(Player, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.team.name} - {self.player.name}"
+        return f"{self.team.name} - {self.player.playername}"
     class Meta:
         db_table = 'team_member'
