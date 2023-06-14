@@ -7,12 +7,11 @@ def player_main(request):
 
 def add_player(request):
     if request.method == 'POST':
-        #name = request.user.first_name
+        playername = request.user
         height = request.POST['height']
         weight = request.POST['weight']
         position = request.POST['position']
-        player = Player(height=height, weight=weight, position=position)
-        player.save()
+        player = Player.objects.create(playername=playername,height=height, weight=weight, position=position)
         return redirect('main:players:add_player')
     return render(request, 'players/add_player.html')
 

@@ -1,48 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-  
-  <title>팀 목록</title>
-  
-</head>
-<body>
-  <header>
-    <!-- 헤더 내용 추가 -->
-    <h1>팀 목록</h1>
-  </header>
-
-  <nav>
-    <!-- 내비게이션 메뉴 추가 -->
-    <ul>
-      <li><a href="#">팀 목록</a></li>
-      
-      <li><a href="#">팀 가입 신청</a></li>
-    </ul>
-  </nav>
-
-  <main>
-    <!-- 팀 목록 내용 추가 -->
-    <h2>팀 목록</h2>
-    <ul>
-      {% for team in teams %}
-      <div class="team-card">
-        <h2>{{ team.name }}</h2>
-        <p>Leader: {{ team.leader.username }}</p>
-        <p>Team Members: {{ team.team_members.count }}</p>
-        <a href="{% url 'main:team:team_register' team.pk %}">View Details</a>
-        <form method="POST" action="{% url 'team:team_join' team.pk %}">
-          {% csrf_token %}
-          <button type="submit">Join Team</button>
-        </form>
-      </div>
-    {% endfor %}
-    </ul>
-
-    <!-- 팀 등록 버튼 추가 -->
-    <a href="{% url 'main:team:team_register' %}">팀 등록</a>
-  </main>
-
-
-  
-</body>
-</html>
+{% block content %}
+    <h1 class="center">팀 관리 페이지</h1>
+    
+    <div class="center">
+        <ul>
+            <li><a href="{% url 'main:team:create_team' %}" class="button">팀 생성</a></li>
+            {% if team %}
+                <li><a href="{% url 'main:team:manage_team_members' %}" class="button">팀원 관리</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    <a href="{% url 'main:home' %}">메인 페이지로 돌아가기</a>
+{% endblock %}

@@ -1,11 +1,9 @@
 from django.urls import path
-from team import views
+from team.views import create_team, manage_team_members, team_main
 
 app_name = 'team'
-
 urlpatterns = [
-    path('', views.team_main, name='team_main'),
-    path('register/', views.team_register, name='team_register'),
-    path('accept/<int:registration_id>/', views.team_accept_registration, name='team_accept_registration'),
-    path('create/', views.create_team, name='team_create'),
+    path('create/', create_team, name='create_team'),
+    path('manage/', manage_team_members, name='manage_team_members'),
+    path('team_main/', team_main, name='team_main'),
 ]

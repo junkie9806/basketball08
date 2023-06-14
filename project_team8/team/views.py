@@ -1,52 +1,33 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Team, TeamMember, TeamRegistration
-from .forms import TeamRegistrationForm
+from django.shortcuts import render,redirect
+from team.models import Team, TeamMember
+from players.models import Player
 
 def team_main(request):
-    teams = Team.objects.all()
-    return render(request, 'team/team_main.html', {'teams': teams})
-
-def team_register(request):
-    
-    if request.method == 'POST':
-        form = TeamRegistrationForm(request.POST)
-        if form.is_valid():
-            registration = form.save(commit=False)
-            registration.user = request.user
-            registration.save()
-            return redirect('main:team:team_main')
-    else:
-        form = TeamRegistrationForm()
-    return render(request, 'team/team_register.html', {'form': form})
-
-def team_accept_registration(request, registration_id):
-    teams = Team.objects.all()
-    registration = get_object_or_404(TeamRegistration, id=registration_id)
-    if registration.team.leader == request.user:
-        team = registration.team
-        user = registration.user
-
-        # 등록 요청 수락 처리
-        TeamMember.objects.create(team=team, user=user)
-        registration.is_accepted = True
-        registration.save()
-
-    return redirect('main:team:team_main')
-
-from django.shortcuts import render, redirect
-from .forms import TeamForm
-from .models import Team
+    team = Team.objects.all()
+    return render(request, 'team/team_main.html', {'team' : team})
 
 def create_team(request):
-    
     if request.method == 'POST':
-        form = TeamForm(request.POST)
-        if form.is_valid():
-            team = form.save(commit=False)
-            team.leader = request.user
-            team.save()
-            return redirect('main:team:team_main')
-    else:
-        form = TeamForm()
-    return render(request, 'team/team_register.html', {'form': form})
+        team_name = request.POST.get('team_name')
+        leader = request.user
+        address = request.POST.get('address')
+        
+        team = Team.objects.create(name=team_name, leader=leader, address=address)
+        
+        # 팀 ID를 세션에 저장
+        request.session['team_id'] = team.id
+        
+        return render(request, 'team/create_team.html', {'team': team})
+    
+    return render(request, 'team/create_team.html')
 
+def manage_team_members(request):
+    if request.method == 'POST':
+        leader = request.user
+        player_id = request.POST.get('player_id')
+        player = Player.objects.get(id=player_id)
+        TeamMember.objects.create(leader=leader, player=player)
+        return redirect('main:team:team_main')
+
+    players = Player.objects.all()
+    return render(request, 'team/manage_team_members.html', {'players': players})
