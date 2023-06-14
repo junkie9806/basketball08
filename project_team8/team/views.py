@@ -24,10 +24,12 @@ def create_team(request):
 def manage_team_members(request):
     if request.method == 'POST':
         leader = request.user
-        player_id = request.POST.get('player_id')
-        player = Player.objects.get(id=player_id)
-        TeamMember.objects.create(leader=leader, player=player)
-        return redirect('main:team:team_main')
+        playername = request.POST.get('player')
 
-    players = Player.objects.all()
-    return render(request, 'team/manage_team_members.html', {'players': players})
+        try:
+            player = Player.objects.get(playername=playername)
+            TeamMember.objects.create(leader=leader, player=player)
+            return redirect('main:team:team_main')  # Redirect to the appropriate URL
+        except Player.DoesNotExist:
+            error_message = f"Player '{playername}' does not exist."
+            return render(request, 'team/manage_team_members.html', {'error_message': error_message})
