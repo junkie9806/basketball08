@@ -23,19 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-x8z%(=uc15xgl92wax_$86#ufmd*xz@4u26bx4a7e+8+^=88kn'
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
-
-if DEBUG:
-    STATIC_URL='/static/'
-    #STATIC_ROOT = 'static'
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-else:
-    AWS_ACCESS_KEY_ID = 'AKIAUSLX7DBDSSNEPWCT'
-    AWS_SECRET_ACCESS_KEY = '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'
-    
-
 
 ALLOWED_HOSTS = ['*']
 

@@ -3,12 +3,11 @@
 {% block title %}검색 결과{% endblock %}
 
 {% block content %}
-    <h1>검색 결과</h1>
-    
-    {% if results %}
+    {% if players %}
+        <h2>검색 결과:</h2>
         <ul>
-            {% for result in results %}
-                <li>{{ result }}</li>
+            {% for player in players %}
+                <li>{{ player.playername }} - 키: {{ player.height }}cm, 몸무게: {{ player.weight }}kg, 포지션: {{ player.position }}</li>
             {% endfor %}
         </ul>
     {% else %}

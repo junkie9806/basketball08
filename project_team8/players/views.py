@@ -7,7 +7,7 @@ def player_main(request):
 
 def add_player(request):
     if request.method == 'POST':
-        playername = request.user
+        playername = request.user.first_name
         height = request.POST['height']
         weight = request.POST['weight']
         position = request.POST['position']

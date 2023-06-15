@@ -3,7 +3,7 @@
 <h2>Team: {{ team.name }}</h2>
 
 <h3>Add Team Member</h3>
-<form method="POST" action="{% url 'main:team:manage_team_members' team.id %}">
+<form method="POST" action="{% url 'main:team:manage_team_members' %}">
   {% csrf_token %}
   <label for="playername">Select Player:</label>
   <select id="playername" name="playername" required>
